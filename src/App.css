@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
+#app {
+  position: absolute;
+  width: 1116px;
+  height: 614px;
+  right: 50%;
+  transform: translateX(50%);
+  top: 91px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#sections {
+  display: grid;
+  grid-template-areas: "form graph" "table table";
+  grid-template-columns: 458px 583px;
+  column-gap: 75px;
+  row-gap: 25px;
+  margin-top: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.section {
+  background-color: var(--cor-fundo-vazio);
+  border: 2px solid var(--cor-borda-secao);
+  border-radius: 6px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#form {
+  grid-area: "form";
+  width: 458px;
+  height: 362px;
+  padding: 30px 35px 50px 35px;
 }
 
-.App-link {
-  color: #61dafb;
+#graph {
+  grid-area: "graph";
+  width: 583px;
+  height: 362px;
+  padding: 30px 37px 29px 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#table {
+  grid-area: "table";
+  width: 1116px;
+  height: 159px;
+  padding: 19px 29px 31px 35px;
+}
+
+.table-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cor-contraste-principal);
 }
