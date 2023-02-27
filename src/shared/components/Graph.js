@@ -5,8 +5,8 @@ const Graph = ({ graphData }) => {
 
     const lista = [graphData];
 
-    const corReceita = '#5932EA'; // roxo
-    const corDespesa = '#EA3232'; // vermelho
+    const corReceita = '#5932EA';
+    const corDespesa = '#EA3232';
 
     const CustomXAxisTick = ({x, y, payload}) => (
         <text x={x} y={y + 10} fill="#666" textAnchor="middle" fontSize={14}>

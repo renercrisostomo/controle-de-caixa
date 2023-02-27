@@ -5,8 +5,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const Tabela = ({ tableData, handleDelete }) => {
 
-  const corReceita = '#5932EA'; // roxo
-  const corDespesa = '#EA3232'; // vermelho
+  const corReceita = '#5932EA';
+  const corDespesa = '#EA3232';
+  
   const styleCell = { fontFamily: 'Poppins', color: 'black', padding: '0px' };
   const styleHeaderCell = { ...styleCell, border: 'none' };
   const styleBodyCell = { ...styleCell, fontWeight: '600', height: '32px', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' };
