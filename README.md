@@ -1,3 +1,3 @@
 # Projeto Controle de caixa
 
-Recebe do usuário o valor, data, observação e o tipo de movimentação e atualizada os dados na tabela e no gráfico.
+Recebe do usuário um valor em reais, data, observação e o tipo de movimentação (receita ou despesa) e atualizada os dados na tabela e no gráfico.
