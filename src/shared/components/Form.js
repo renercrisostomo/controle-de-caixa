@@ -32,7 +32,7 @@ const Form = ({ onAddItem }) => {
         setValue('')
         setDate('')
         setObservation('')
-        // setType('Receita') - não resetarei o tipo de movimentação
+        // setType('Receita') - permanece o tipo de movimentação escolhido
     }
 
     return (
