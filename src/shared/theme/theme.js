@@ -58,10 +58,10 @@ const theme = createTheme({
                 label: {
                     color: '#343640',
                     fontWeight: 400,
-                    fontSize: 16,
+                    fontSize: '14px',
                     width: '88px',
                     height: '18px',
-                }
+                },
             }
         },
 
@@ -73,7 +73,7 @@ const theme = createTheme({
                     fontWeight: 600,
                     fontSize: '14px',
                     letterSpacing: '0.01em',
-                    
+
                 },
             },
         },
