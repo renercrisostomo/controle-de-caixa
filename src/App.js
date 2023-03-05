@@ -13,12 +13,8 @@ function App() {
     let receitasTotal = 0;
     let despesasTotal = 0;
 
-    tableData.forEach((item) => {
-      if (item.type === "Receita") {
-        receitasTotal += parseFloat(item.value);
-      } else if (item.type === "Despesa") {
-        despesasTotal += parseFloat(item.value);
-      }
+    tableData.forEach((item) => { 
+      item.type === "Receita" ? receitasTotal += parseFloat(item.value) : despesasTotal += parseFloat(item.value) 
     });
 
     setgraphData({receita: receitasTotal, despesa: despesasTotal});
