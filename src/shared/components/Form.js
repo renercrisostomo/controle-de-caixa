@@ -1,39 +1,38 @@
 import React, { useState } from 'react'
-import { Grid, FormControl, FormLabel, TextField, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material'
+import { Grid, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material'
 import { Add, CheckCircle } from '@mui/icons-material'
 import '../../App.css'
+import InputForm from './InputForm'
 
 
 const Form = ({ onAddItem }) => {
 
-    const [id, setId] = useState(0)
-    const [value, setValue] = useState('')
-    const [date, setDate] = useState('')
-    const [observation, setObservation] = useState('')
-    const [type, setType] = useState('Receita')
+    const [values, setValues] = useState({ value: '', date: '', observation: '', type: 'Receita' });
+    const [id, setId] = useState(1);
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newValues = { ...values };
 
         // formata a data e adiciona no objeto
-        const data = new Date(date);
-        const dataFormatada = data.toLocaleDateString("pt-BR");
+        const data = new Date(newValues.date);
+        newValues.date = data.toLocaleDateString("pt-BR");
 
-        const newItem = {
-            id,
-            value,
-            date: dataFormatada,
-            observation,
-            type
-        }
-        onAddItem(newItem)
+        const newItem = { id: id, ...newValues };
+        onAddItem(newItem);
 
-        setId(id + 1)
-        setValue('')
-        setDate('')
-        setObservation('')
-        // setType('Receita') - permanece o tipo de movimentação escolhido
-    }
+        setId(id + 1);
+        setValues({ value: '', date: '', observation: '', type: values.type });
+    };
+
+    const onChange = (e) => {
+        const newValues = { ...values };
+        const { name, value } = e.target;
+        newValues[name] = value;
+        setValues(newValues);
+    };
+
 
     return (
 
@@ -41,42 +40,21 @@ const Form = ({ onAddItem }) => {
 
             <h2>Movimentações</h2>
 
-            <Grid
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems="stretch"
-                spacing='16px'
-                size='223px'
-                marginTop='25px'
-            >
-                <Grid item xs='70px' spacing='10px' container direction="row" justifyContent="space-between" alignItems="center">
-                    <Grid item xs={6}>
-                        <FormControl required>
-                            <FormLabel style={{ color: 'black', fontFamily: 'Poppins', fontWeight: 600, fontSize: '14px', letterSpacing: '0.01em', }} htmlFor="value">Valor</FormLabel>
-                            <TextField type="number" inputProps={{ min: 0 }} id="value" name="value" placeholder="Digite o Valor" size="small" value={value} required onChange={(e) => setValue(e.target.value)} />
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <FormControl required>
-                            <FormLabel style={{ color: 'black', fontFamily: 'Poppins', fontWeight: 600, fontSize: '14px', letterSpacing: '0.01em', }} htmlFor="date">Data</FormLabel>
-                            <TextField required type="date" id="date" name="date" placeholder="Selecione a Data" size="small" value={date} onChange={(e) => setDate(e.target.value)} />
-                        </FormControl>
-                    </Grid>
+            <Grid container direction="column" justifyContent="center" alignItems="stretch" spacing='16px' size='223px' marginTop='25px'>
+                <Grid item xs={70} spacing='10px' container direction="row" justifyContent="space-between" alignItems="center">
+                    <InputForm xs={6} isRequired type="number" id="value" name="value" label="Valor" htmlFor="value" placeholder="Digite o Valor" size="small" value={values.value} onChange={onChange} />
+                    <InputForm xs={6} isRequired type="date" id="date" name="date" label="Data" htmlFor="date" placeholder="Selecione a Data" size="small" value={values.date} onChange={onChange} />
                 </Grid>
-                <Grid item xs='70px'>
-                    <FormControl id="observation">
-                        <FormLabel style={{ color: 'black', fontFamily: 'Poppins', fontWeight: 600, fontSize: '14px', letterSpacing: '0.01em', }} htmlFor="observation">Observação <span>(opcional)</span></FormLabel>
-                        <TextField fullWidth type="text" id="observation" name="observation" placeholder="Digite a Observação" size="small" value={observation} onChange={(e) => setObservation(e.target.value)} />
-                    </FormControl>
-                </Grid>
-                <Grid item xs='51px' spacing='10px' container direction="row" justifyContent="space-between">
+
+                <InputForm xs={70} type="text" id="observation" name="observation" label={`Observação (opcional)`} htmlFor="observation" placeholder="Digite a Observação" size="small" value={values.observation} onChange={onChange} isFullWidth />
+
+                <Grid item xs={51} spacing='10px' container direction="row" justifyContent="space-between">
                     <Grid item xs={6}>
                         <FormControl required>
                             <FormLabel style={{ color: 'black', fontFamily: 'Poppins', fontWeight: 600, fontSize: '14px', letterSpacing: '0.01em', }}>Tipo de movimentação</FormLabel>
-                            <RadioGroup style={{ width: '196px', height: '18px' }} defaultValue="Receita" name="radio-buttons-group" row value={type} onChange={(e) => setType(e.target.value)}>
-                                <FormControlLabel style={{width: '88px', height: '18px'}} value="Receita" label="Receita" size='small' control={<Radio size='small' checkedIcon={<CheckCircle />} />} />
-                                <FormControlLabel style={{width: '88px', height: '18px'}} value="Despesa" label="Despesa" size='small' control={<Radio size='small' checkedIcon={<CheckCircle />} />} />
+                            <RadioGroup style={{ width: '196px', height: '18px' }} defaultValue="Receita" name="type" row value={values.type} onChange={onChange}>
+                                <FormControlLabel style={{ width: '88px', height: '18px' }} value="Receita" label="Receita" size='small' control={<Radio size='small' checkedIcon={<CheckCircle />} />} />
+                                <FormControlLabel style={{ width: '88px', height: '18px' }} value="Despesa" label="Despesa" size='small' control={<Radio size='small' checkedIcon={<CheckCircle />} />} />
                             </RadioGroup>
                         </FormControl>
                     </Grid>
@@ -89,7 +67,6 @@ const Form = ({ onAddItem }) => {
             </Grid>
         </form>
     );
-
 }
 
 export default Form
