@@ -12,7 +12,7 @@ server.use(express.json());
 
 const items = [];
 
-//Exemplo: { id: 1, value: 40, date: "05/04/2023", observation: "test", type: "receita" }
+//Exemplo: { id: 1, value: 40, date: "05/04/2023", observation: "Text", type: "Receita" }
 
 server.get("/items", (req, res) => {
   res.json(items);
@@ -27,7 +27,6 @@ server.post("/items", (req, res) => {
 server.delete("/items/:id", (req, res) => {
   const { id } = req.params;
   const index = items.findIndex((item) => item.id === parseInt(id));
-  console.log(index)
   items.splice(index, 1);
   res.status(204).send();
 });
