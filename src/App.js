@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material';
 function App() {
 
   const [tableData, setTableData] = useState([])
-  const [graphData, setgraphData] = useState({ receita: 0, despesa: 0 })
+  const [graphData, setGraphData] = useState({ receita: 0, despesa: 0 })
 
   useEffect(() => {
     let receitasTotal = 0;
@@ -17,7 +17,7 @@ function App() {
       item.type === "Receita" ? receitasTotal += parseFloat(item.value) : despesasTotal += parseFloat(item.value) 
     });
 
-    setgraphData({ receita: receitasTotal, despesa: despesasTotal });
+    setGraphData({ receita: receitasTotal, despesa: despesasTotal });
   }, [tableData]);
 
   function onAddItem(newItem) {
