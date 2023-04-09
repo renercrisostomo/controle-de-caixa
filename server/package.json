@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "0.3.0",
+  "description": "backend do projeto controle de caixa",
+  "main": "index.js",
+  "repository": "git+https://github.com/renercrisostomo/controle-de-caixa",
+  "author": "rener",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "body-parser": "^1.20.2",
+    "express-pino-logger": "^7.0.0",
+    "node-env-run": "^4.0.2",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5",
+    "pino-colada": "^2.2.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
