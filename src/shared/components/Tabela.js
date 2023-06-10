@@ -41,7 +41,7 @@ const Tabela = ({ tableData, handleDelete }) => {
                   {row.type}
                 </TableCell>
                 <TableCell style={{ ...styleBodyCell }}>
-                  <IconButton style={{ color: 'black', padding: '0px' }} aria-label="delete" onClick={() => handleDelete(row.id)}>
+                  <IconButton style={{ color: 'black', padding: '0px' }} aria-label="delete" title="Apagar item" onClick={() => handleDelete(row.id)}>
                     <DeleteIcon color='black' />
                   </IconButton>
                 </TableCell>
